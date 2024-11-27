@@ -7,12 +7,67 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.ClienteEntity;
-
+import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.BibliotecaEntity;
+//import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ServicioBibliotecaRespuestaDTO;
 @Repository
-public class UsuarioRepository {
+public class BibliotecaRepository {
 
-	private int pos;
+	int pos;
+	private ArrayList<BibliotecaEntity> listaDeudasBiblioteca; 
+
+	public BibliotecaRepository() {
+		this.listaDeudasBiblioteca = new ArrayList<BibliotecaEntity>();		
+		cargarDeudasBiblioteca();
+		pos=this.listaDeudasBiblioteca.size()+1;
+	}
+	public List<BibliotecaEntity> findAll() {
+		System.out.println("Invocando a listar deudas de la biblioteca");
+		return this.listaDeudasBiblioteca;
+	}
+
+	public BibliotecaEntity findById(Integer id) {
+		System.out.println("Invocando a consultar un cliente");
+		BibliotecaEntity objdeudasBiblioteca = null;
+
+		for (BibliotecaEntity Biblioteca : listaDeudasBiblioteca) {
+			if (Biblioteca.getIdEstudiante() == id) {
+				objdeudasBiblioteca = Biblioteca;
+				break;
+			}
+		}
+
+		return objdeudasBiblioteca;
+	}
+
+	public boolean delete(Integer id) {
+		System.out.println("Invocando a eliminar una deuda de un estudiante de la biblioteca");
+		boolean bandera = false;
+
+		for (int i = 0; i < this.listaDeudasBiblioteca.size(); i++) {
+			if (this.listaDeudasBiblioteca.get(i).getIdEstudiante() == id) {
+				this.listaDeudasBiblioteca.remove(i);
+				bandera = true;
+				break;
+			}
+		}
+
+		return bandera;
+	}
+
+	private void cargarDeudasBiblioteca() {
+
+		BibliotecaEntity objBlioteca = new BibliotecaEntity(1, "Andres", "Perez", "La Maria", "Jorge Issac",new Date(), new Date());
+		this.listaDeudasBiblioteca.add(objBlioteca);
+		BibliotecaEntity objBlioteca1 = new BibliotecaEntity(2, "Juan", "Perez", "Matematicas Basicas","nombreAutor", new Date(), new Date());
+		this.listaDeudasBiblioteca.add(objBlioteca1);
+		BibliotecaEntity objBlioteca2 = new BibliotecaEntity(3, "Catalina", "Lopez", "Introducción a la ingenieria","nombreAutor", new Date(), new Date());
+		this.listaDeudasBiblioteca.add(objBlioteca2);
+		BibliotecaEntity objBlioteca3 = new BibliotecaEntity(4, "Sandra", "Sanchez", "Introducció a circuitos","nombreAutor",new Date(),new Date());
+		this.listaDeudasBiblioteca.add(objBlioteca3);
+		
+	}
+
+	/*private int pos;
 	private ArrayList<ClienteEntity> listaDeClientes; 
 
 	public UsuarioRepository() {
@@ -91,6 +146,8 @@ public class UsuarioRepository {
 		this.listaDeClientes.add(objCliente3);
 		ClienteEntity objCliente = new ClienteEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
 		this.listaDeClientes.add(objCliente);
-	}
+	}*/
+
+	
 
 }

@@ -10,8 +10,9 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class ServicioDeporteRespuestaDTO {
-    private Integer id;
-    private String nombre;
+    private int idEstudiante;
+    private String nombreEstudiante;
+    private String apellidoEstuduante;
     private String nombreImplemento;
     private Date fechaPrestamo;
     private Date fechaEntrega;

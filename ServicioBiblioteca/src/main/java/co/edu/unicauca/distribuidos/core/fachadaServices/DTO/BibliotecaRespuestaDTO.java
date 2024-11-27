@@ -8,15 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ServicioBibliotecaPeticionDTO {
-    
+public class BibliotecaRespuestaDTO {
+    private int idEstudiante;
+    private String nombreEstudiante;
+    private String apellidoEstuduante;
     private String nombreLibro;
     private String nombreAutor;
     private Date fechaPrestamo;
     private Date fechaEntrega;
 
-    public ServicioBibliotecaPeticionDTO() {
-
+    public BibliotecaRespuestaDTO() {
     }
-    
 }
