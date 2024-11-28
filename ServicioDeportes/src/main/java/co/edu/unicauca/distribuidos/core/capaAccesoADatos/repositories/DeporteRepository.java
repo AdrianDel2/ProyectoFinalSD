@@ -30,7 +30,7 @@ public class DeporteRepository {
 
 		for (DeporteEntity deporte : listadeudasDeporte) {
 			if (deporte.getIdEstudiante() == id) {
-				objDeporte = cliente;
+				objDeporte = deporte;
 				break;
 			}
 		}
@@ -43,7 +43,7 @@ public class DeporteRepository {
 		boolean bandera = false;
 
 		for (int i = 0; i < this.listadeudasDeporte.size(); i++) {
-			if (this.listadeudasDeporte.get(i).getId() == id) {
+			if (this.listadeudasDeporte.get(i).getIdEstudiante() == id) {
 				this.listadeudasDeporte.remove(i);
 				bandera = true;
 				break;
@@ -55,13 +55,13 @@ public class DeporteRepository {
 
 	private void cargarDeudasDeportes() {
 		DeporteEntity objCliente1 = new DeporteEntity(1, "Juan", "Perez", "Balon", new Date(), new Date(), "Futbol");
-		this.listaDeClientes.add(objCliente1);
+		this.listadeudasDeporte.add(objCliente1);
 		DeporteEntity objCliente2 = new DeporteEntity(2, "Catalina", "Lopez", "Aro", new Date(), new Date(), "Gimnasia");
-		this.listaDeClientes.add(objCliente2);
+		this.listadeudasDeporte.add(objCliente2);
 		DeporteEntity objCliente3 = new DeporteEntity(3, "Sandra", "Sanchez", "Raqueta", new Date(), new Date(), "Tenis");
-		this.listaDeClientes.add(objCliente3);
+		this.listadeudasDeporte.add(objCliente3);
 		DeporteEntity objCliente = new DeporteEntity(4, "Andres", "Perez", "Guantes", new Date(), new Date(), "Boxeo");
-		this.listaDeClientes.add(objCliente);
+		this.listadeudasDeporte.add(objCliente);
 	}
 
 }

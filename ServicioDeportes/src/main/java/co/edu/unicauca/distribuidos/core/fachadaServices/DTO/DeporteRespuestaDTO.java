@@ -1,4 +1,4 @@
-package main.java.co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
 
 import java.util.Date;
 

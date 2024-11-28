@@ -28,35 +28,19 @@ methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMeth
 public class DeporteRestController {
 
 	@Autowired
-	private IDeporteService clienteService; /*Inyeccion de un objeto que corresponde a la fachada 
+	private IDeporteService deporteService; /*Inyeccion de un objeto que corresponde a la fachada 
 											Esta debe tener la mayor responsabilidad para dejar mas limpio el contorlador*/
 
 	@GetMapping("/clientes") 
-	public List<ClienteDTO> listarClientes() {
+	public List<DeporteRespuestaDTO> listarClientes() {
 		return clienteService.findAll();
 	}
 
 	@GetMapping("/clientes/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
-	public ClienteDTO consultarCliente(@PathVariable Integer id) {
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.findById(id);
-		return objCliente;
-	}
-
-	
-	@GetMapping("/clientes2")
-	public ClienteDTO consultarCliente2(@RequestParam Integer id) {
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.findById(id);
-		return objCliente;
-	}
-
-	@GetMapping("clientes2/{name}/{age}")
-	public String getMessage(@PathVariable String name,
-			@PathVariable("age") String edad) {
-		String msg = String.format("%s es %s años viejo", name, edad);
-		System.out.println(msg);
-		return msg;
+	public DeporteRespuestaDTO consultarCliente(@PathVariable Integer id) {
+		DeporteRespuestaDTO objDeporte = null;
+		objDeporte = DeporteService.findById(id);
+		return objDeporte;
 	}
 
 	@GetMapping("consultarClientes")
@@ -67,29 +51,12 @@ public class DeporteRestController {
 		return msg;
 	}
 
-	@PostMapping("/clientes")
-	public ClienteDTO crearCliente(@RequestBody ClienteDTO cliente) {/*Se hace la desconversion de JSON con esa anotacion */
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.save(cliente);
-		return objCliente;
-	}
-
-	@PutMapping("/clientes/{id}")
-	public ClienteDTO actualizarCliente(@RequestBody ClienteDTO cliente, @PathVariable Integer id) {
-		ClienteDTO objCliente = null;
-		ClienteDTO clienteActual = clienteService.findById(id);
-		if (clienteActual != null) {
-			objCliente = clienteService.update(id, cliente);
-		}
-		return objCliente;
-	}
-
 	@DeleteMapping("/clientes/{id}")
 	public Boolean eliminarCliente(@PathVariable Integer id) {
 		Boolean bandera = false;
-		ClienteDTO clienteActual = clienteService.findById(id);
-		if (clienteActual != null) {
-			bandera = clienteService.delete(id);
+		DeporteRespuestaDTO DeporteActual = DeporteService.findById(id);
+		if (DeporteActual != null) {
+			bandera = DeporteService.delete(id);
 		}
 		return bandera;
 	}
