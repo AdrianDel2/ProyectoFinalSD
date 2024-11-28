@@ -14,9 +14,5 @@ public interface IFinancieraService {
 
 	public FinancieraRespuestaDTO findById(Integer id);
 
-	public FinancieraRespuestaDTO save(FinancieraRespuestaDTO cliente);
-
-	public FinancieraRespuestaDTO update(Integer id, FinancieraRespuestaDTO cliente);
-
 	public boolean delete(Integer id);
 }

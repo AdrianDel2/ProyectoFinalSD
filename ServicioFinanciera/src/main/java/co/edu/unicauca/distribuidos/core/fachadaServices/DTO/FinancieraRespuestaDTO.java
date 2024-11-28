@@ -11,10 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class FinancieraRespuestaDTO {
 	
-	private integer idEstudiante;
+	private int idEstudiante;
     private String nombreUsuario;
 	private String apellidoEstudiante;
-    private integer valorDeuda;
+    private int valorDeuda;
 	private String tipoDeuda;	
 	private Date fechaVencimientoDeuda;
 

@@ -16,7 +16,7 @@ public class FinancieraRepository {
 
 	public FinancieraRepository() {
 		this.listaDeudasFinanciera = new ArrayList<FinancieraEntity>();		
-		cargarClientes();
+		cargarDeudasFinanciera();
 		pos=this.listaDeudasFinanciera.size()+1;
 	}
 
@@ -53,14 +53,15 @@ public class FinancieraRepository {
 	}
 
 	private void cargarDeudasFinanciera() {
-		FinancieraEntity objFinanciera1 = new FinancieraEntity(1, "Juan", "Perez", "juan@unicauca.edu.co", new Date());
-		this.listaDeudasFinanciera.add(objCliente1);
-		FinancieraEntity objFinanciera2 = new FinancieraEntity(2, "Catalina", "Lopez", "catalina@unicauca.edu.co", new Date());
-		this.listaDeudasFinanciera.add(objCliente2);
-		FinancieraEntity objFinanciera3 = new FinancieraEntity(3, "Sandra", "Sanchez", "Sandra@unicauca.edu.co", new Date());
-		this.listaDeudasFinanciera.add(objCliente3);
-		FinancieraEntity objFinanciera = new FinancieraEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
-		this.listaDeudasFinanciera.add(objCliente);
+		FinancieraEntity objFinanciera1 = new FinancieraEntity(1, "Juan", "Perez", 50000,"Matricula", new Date());
+		this.listaDeudasFinanciera.add(objFinanciera1);
+		FinancieraEntity objFinanciera2 = new FinancieraEntity(2, "Catalina", "Lopez", 100000,"Seguro Estudiantil", new Date());
+		this.listaDeudasFinanciera.add(objFinanciera2);
+		FinancieraEntity objFinanciera3 = new FinancieraEntity(3, "Sandra", "Sanchez",1000000 ,"Matricula", new Date());
+		this.listaDeudasFinanciera.add(objFinanciera3);
+		FinancieraEntity objFinanciera = new FinancieraEntity(4, "Andres", "Perez",500000 ,"Seguro Estudiantil", new Date());
+		this.listaDeudasFinanciera.add(objFinanciera);
 	}
 
 }
+

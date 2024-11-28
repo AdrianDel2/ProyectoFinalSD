@@ -45,23 +45,6 @@ public class FinancieraServiceImpl implements IFinancieraService {
 	}
 
 	@Override
-	public FinancieraRespuestaDTO save(FinancieraRespuestaDTO cliente) {
-		FinancieraEntity clienteEntity = this.modelMapper.map(cliente, FinancieraEntity.class); /*Conversion de cliente DTO a cliente entity */
-		clienteEntity.setCreateAt(new Date()); /*Fija una fecha de creacion */
-		FinancieraEntity objCLienteEntity = this.servicioAccesoBaseDatos.save(clienteEntity) /*Almacena cliente entity */;
-		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(objCLienteEntity, FinancieraRespuestaDTO.class) /*Mapeo a cliente DTO */;
-		return clienteDTO; /*Retorno cliente DTO */
-	}
-
-	@Override
-	public FinancieraRespuestaDTO update(Integer id, FinancieraRespuestaDTO cliente) {
-		FinancieraEntity clienteEntity = this.modelMapper.map(cliente, FinancieraEntity.class);
-		FinancieraEntity clienteEntityActualizado = this.servicioAccesoBaseDatos.update(id, clienteEntity);
-		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(clienteEntityActualizado, FinancieraRespuestaDTO.class);
-		return clienteDTO;
-	}
-
-	@Override
 	public boolean delete(Integer id) {
 		return this.servicioAccesoBaseDatos.delete(id);
 	}

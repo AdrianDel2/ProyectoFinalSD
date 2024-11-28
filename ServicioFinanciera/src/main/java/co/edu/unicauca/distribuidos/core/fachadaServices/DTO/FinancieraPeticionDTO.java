@@ -9,10 +9,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class FinancieraPeticionDTO{
 
-	private integer idEstudiante;
+	private int idEstudiante;
     private String nombreUsuario;
 	private String apellidoEstudiante;
-    private integer valorDeuda;
+    private int valorDeuda;
 	private String tipoDeuda;	
 	private Date fechaVencimientoDeuda;
 }
