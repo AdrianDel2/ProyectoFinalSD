@@ -33,13 +33,13 @@ public class DeporteRestController {
 
 	@GetMapping("/clientes") 
 	public List<DeporteRespuestaDTO> listarClientes() {
-		return clienteService.findAll();
+		return deporteService.findAll();
 	}
 
 	@GetMapping("/clientes/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
 	public DeporteRespuestaDTO consultarCliente(@PathVariable Integer id) {
 		DeporteRespuestaDTO objDeporte = null;
-		objDeporte = DeporteService.findById(id);
+		objDeporte = deporteService.findById(id);
 		return objDeporte;
 	}
 
@@ -54,9 +54,9 @@ public class DeporteRestController {
 	@DeleteMapping("/clientes/{id}")
 	public Boolean eliminarCliente(@PathVariable Integer id) {
 		Boolean bandera = false;
-		DeporteRespuestaDTO DeporteActual = DeporteService.findById(id);
+		DeporteRespuestaDTO DeporteActual = deporteService.findById(id);
 		if (DeporteActual != null) {
-			bandera = DeporteService.delete(id);
+			bandera = deporteService.delete(id);
 		}
 		return bandera;
 	}
