@@ -1,4 +1,4 @@
-package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+package co.edu.unicauca.distribuidos.core.capaAccesoADatos.models;
 
 import java.util.Date;
 
@@ -9,14 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ClienteDTO {
+public class FinancieraEntity {
 	private Integer id;
 	private String nombre;
 	private String apellido;
 	private String email;
 	private Date createAt;
 
-	public ClienteDTO() {
+	public FinancieraEntity() {
 
 	}
 }

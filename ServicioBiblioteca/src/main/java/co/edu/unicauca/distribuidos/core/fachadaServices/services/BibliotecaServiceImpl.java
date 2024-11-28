@@ -7,7 +7,9 @@ import java.util.NoSuchElementException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.BibliotecaEntity;
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.repositories.BibliotecaRepository;
@@ -44,7 +46,7 @@ public class BibliotecaServiceImpl implements IBibliotecaService {
 	public BibliotecaRespuestaDTO findById(Integer id) {
 		BibliotecaEntity objBibliotecaEntity = this.servicioAccesoBaseDatos.findById(id);
 		if (objBibliotecaEntity == null){
-			throw new RuntimeException("Estudiante con  id: " + id + " no fue encontrado en las deudas de prestamos de libros");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante con id: " + id + " no fue encontrado en las deudas de préstamos de libros");
 		}
 		BibliotecaRespuestaDTO blibliotecaRespuestaDTO = this.modelMapper.map(objBibliotecaEntity, BibliotecaRespuestaDTO.class);
 		return blibliotecaRespuestaDTO;

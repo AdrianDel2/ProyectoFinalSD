@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class ServicioFinancieraPeticionDTO{
+public class FinancieraPeticionDTO{
     	
 	private int valorDeuda;
 	private String tipoDeuda;	

@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ClienteDTO;
-import co.edu.unicauca.distribuidos.core.fachadaServices.services.IClienteService;
+import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.DeporteRespuestaDTO;
+import co.edu.unicauca.distribuidos.core.fachadaServices.services.IDeporteService;
 
 @RestController /*Crear na serie de metodos que ofrece servicios rest */
 @RequestMapping("/api") /*Toda URL para ofrecer esos servicios web, debe empezar con /api */
 @CrossOrigin(origins = "http://localhost:4200",  
 methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}) 
-public class ClienteRestController {
+public class DeporteRestController {
 
 	@Autowired
-	private IClienteService clienteService; /*Inyeccion de un objeto que corresponde a la fachada 
+	private IDeporteService clienteService; /*Inyeccion de un objeto que corresponde a la fachada 
 											Esta debe tener la mayor responsabilidad para dejar mas limpio el contorlador*/
 
 	@GetMapping("/clientes") 

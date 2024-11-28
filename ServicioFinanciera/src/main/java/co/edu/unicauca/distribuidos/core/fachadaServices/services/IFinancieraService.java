@@ -8,7 +8,7 @@ import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ClienteDTO;
 /*Se trabaja con un cliente DTO porque no se debe exponer los entitys al exterior
  * Aqui en los DTO se define que informacion enviar
  */
-public interface IClienteService {
+public interface IFinancieraService {
 
 	public List<ClienteDTO> findAll();
 

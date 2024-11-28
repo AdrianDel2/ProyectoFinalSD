@@ -25,7 +25,7 @@ import co.edu.unicauca.distribuidos.core.fachadaServices.services.IClienteServic
 @RequestMapping("/api") /*Toda URL para ofrecer esos servicios web, debe empezar con /api */
 @CrossOrigin(origins = "http://localhost:4200",  
 methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}) 
-public class ClienteRestController {
+public class DeporteRestController
 
 	@Autowired
 	private IClienteService clienteService; /*Inyeccion de un objeto que corresponde a la fachada 

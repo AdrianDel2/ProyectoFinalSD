@@ -9,13 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ServicioDeporteRespuestaDTO {
+public class DeporteRespuestaDTO {
     private int idEstudiante;
     private String nombreEstudiante;
     private String apellidoEstuduante;
     private String nombreImplemento;
     private Date fechaPrestamo;
     private Date fechaEntrega;
-    private String nombreDeporte;
-    
+    private String nombreDeporte;  
+
+    public DeporteRespuestaDTO() {
+
+	}
 }

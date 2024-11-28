@@ -29,7 +29,7 @@ import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.BibliotecaRespuesta
 @RestController /*Crear na serie de metodos que ofrece servicios rest */
 @RequestMapping("/api") /*Toda URL para ofrecer esos servicios web, debe empezar con /api */
 @CrossOrigin(origins = "http://localhost:4200",  
-methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}) 
+methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE}) 
 public class ClienteRestController {
 
 	@Autowired

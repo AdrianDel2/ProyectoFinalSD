@@ -7,30 +7,30 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.ClienteEntity;
+import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.FinancieraEntity;
 
 @Repository
-public class UsuarioRepository {
+public class FinancieraRepository {
 
 	private int pos;
-	private ArrayList<ClienteEntity> listaDeClientes; 
+	private ArrayList<FinancieraEntity> listaDeClientes; 
 
-	public UsuarioRepository() {
-		this.listaDeClientes = new ArrayList<ClienteEntity>();		
+	public FinancieraRepository() {
+		this.listaDeClientes = new ArrayList<FinancieraEntity>();		
 		cargarClientes();
 		pos=this.listaDeClientes.size()+1;
 	}
 
-	public List<ClienteEntity> findAll() {
+	public List<FinancieraEntity> findAll() {
 		System.out.println("Invocando a listarclientes");
 		return this.listaDeClientes;
 	}
 
-	public ClienteEntity findById(Integer id) {
+	public FinancieraEntity findById(Integer id) {
 		System.out.println("Invocando a consultar un cliente");
-		ClienteEntity objCliente = null;
+		FinancieraEntity objCliente = null;
 
-		for (ClienteEntity cliente : listaDeClientes) {
+		for (FinancieraEntity cliente : listaDeClientes) {
 			if (cliente.getId() == id) {
 				objCliente = cliente;
 				break;
@@ -40,10 +40,10 @@ public class UsuarioRepository {
 		return objCliente;
 	}
 
-	public ClienteEntity save(ClienteEntity cliente) {
+	public FinancieraEntity save(FinancieraEntity cliente) {
 		System.out.println("Invocando a almacenar cliente");
 		cliente.setId(pos);
-		ClienteEntity objCliente = null;
+		FinancieraEntity objCliente = null;
 		if (this.listaDeClientes.add(cliente)) {
 			objCliente = cliente;
 			pos++;
@@ -52,9 +52,9 @@ public class UsuarioRepository {
 		return objCliente;
 	}
 
-	public ClienteEntity update(Integer id, ClienteEntity cliente) {
+	public FinancieraEntity update(Integer id, FinancieraEntity cliente) {
 		System.out.println("Invocando a actualizar un cliente");
-		ClienteEntity objCliente = null;
+		FinancieraEntity objCliente = null;
 
 		for (int i = 0; i < this.listaDeClientes.size(); i++) {
 			if (this.listaDeClientes.get(i).getId() == id) {
@@ -83,13 +83,13 @@ public class UsuarioRepository {
 	}
 
 	private void cargarClientes() {
-		ClienteEntity objCliente1 = new ClienteEntity(1, "Juan", "Perez", "juan@unicauca.edu.co", new Date());
+		FinancieraEntity objCliente1 = new FinancieraEntity(1, "Juan", "Perez", "juan@unicauca.edu.co", new Date());
 		this.listaDeClientes.add(objCliente1);
-		ClienteEntity objCliente2 = new ClienteEntity(2, "Catalina", "Lopez", "catalina@unicauca.edu.co", new Date());
+		FinancieraEntity objCliente2 = new FinancieraEntity(2, "Catalina", "Lopez", "catalina@unicauca.edu.co", new Date());
 		this.listaDeClientes.add(objCliente2);
-		ClienteEntity objCliente3 = new ClienteEntity(3, "Sandra", "Sanchez", "Sandra@unicauca.edu.co", new Date());
+		FinancieraEntity objCliente3 = new FinancieraEntity(3, "Sandra", "Sanchez", "Sandra@unicauca.edu.co", new Date());
 		this.listaDeClientes.add(objCliente3);
-		ClienteEntity objCliente = new ClienteEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
+		FinancieraEntity objCliente = new FinancieraEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
 		this.listaDeClientes.add(objCliente);
 	}
 
