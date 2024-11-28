@@ -1,4 +1,3 @@
-
 package co.edu.unicauca.distribuidos.core.capaAccesoADatos.repositories;
 
 import java.util.ArrayList;
@@ -13,84 +12,55 @@ import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.FinancieraEntit
 public class FinancieraRepository {
 
 	private int pos;
-	private ArrayList<FinancieraEntity> listaDeClientes; 
+	private ArrayList<FinancieraEntity> listaDeudasFinanciera; 
 
 	public FinancieraRepository() {
-		this.listaDeClientes = new ArrayList<FinancieraEntity>();		
+		this.listaDeudasFinanciera = new ArrayList<FinancieraEntity>();		
 		cargarClientes();
-		pos=this.listaDeClientes.size()+1;
+		pos=this.listaDeudasFinanciera.size()+1;
 	}
 
 	public List<FinancieraEntity> findAll() {
 		System.out.println("Invocando a listarclientes");
-		return this.listaDeClientes;
+		return this.listaDeudasFinanciera;
 	}
 
 	public FinancieraEntity findById(Integer id) {
 		System.out.println("Invocando a consultar un cliente");
-		FinancieraEntity objCliente = null;
+		FinancieraEntity objFinanciera = null;
 
-		for (FinancieraEntity cliente : listaDeClientes) {
-			if (cliente.getId() == id) {
-				objCliente = cliente;
+		for (FinancieraEntity financiera : listaDeudasFinanciera) {
+			if (financiera.getIdEstudiante()== id) {
+				objFinanciera = financiera;
 				break;
 			}
 		}
-
-		return objCliente;
-	}
-
-	public FinancieraEntity save(FinancieraEntity cliente) {
-		System.out.println("Invocando a almacenar cliente");
-		cliente.setId(pos);
-		FinancieraEntity objCliente = null;
-		if (this.listaDeClientes.add(cliente)) {
-			objCliente = cliente;
-			pos++;
-		}
-
-		return objCliente;
-	}
-
-	public FinancieraEntity update(Integer id, FinancieraEntity cliente) {
-		System.out.println("Invocando a actualizar un cliente");
-		FinancieraEntity objCliente = null;
-
-		for (int i = 0; i < this.listaDeClientes.size(); i++) {
-			if (this.listaDeClientes.get(i).getId() == id) {
-				this.listaDeClientes.set(i, cliente);
-				objCliente = cliente;
-				break;
-			}
-		}
-
-		return objCliente;
+		return objFinanciera;
 	}
 
 	public boolean delete(Integer id) {
 		System.out.println("Invocando a eliminar un cliente");
 		boolean bandera = false;
 
-		for (int i = 0; i < this.listaDeClientes.size(); i++) {
-			if (this.listaDeClientes.get(i).getId() == id) {
-				this.listaDeClientes.remove(i);
+		for (int i = 0; i < this.listaDeudasFinanciera.size(); i++) {
+			if (this.listaDeudasFinanciera.get(i).getIdEstudiante() == id) {
+				this.listaDeudasFinanciera.remove(i);
 				bandera = true;
 				break;
 			}
 		}
-
 		return bandera;
 	}
 
-	private void cargarClientes() {
-		FinancieraEntity objCliente1 = new FinancieraEntity(1, "Juan", "Perez", "juan@unicauca.edu.co", new Date());
-		this.listaDeClientes.add(objCliente1);
-		FinancieraEntity objCliente2 = new FinancieraEntity(2, "Catalina", "Lopez", "catalina@unicauca.edu.co", new Date());
-		this.listaDeClientes.add(objCliente2);
-		FinancieraEntity objCliente3 = new FinancieraEntity(3, "Sandra", "Sanchez", "Sandra@unicauca.edu.co", new Date());
-		this.listaDeClientes.add(objCliente3);
-		FinancieraEntity objCliente = new FinancieraEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
-		this.listaDeClientes.add(objCliente);
+	private void cargarDeudasFinanciera() {
+		FinancieraEntity objFinanciera1 = new FinancieraEntity(1, "Juan", "Perez", "juan@unicauca.edu.co", new Date());
+		this.listaDeudasFinanciera.add(objCliente1);
+		FinancieraEntity objFinanciera2 = new FinancieraEntity(2, "Catalina", "Lopez", "catalina@unicauca.edu.co", new Date());
+		this.listaDeudasFinanciera.add(objCliente2);
+		FinancieraEntity objFinanciera3 = new FinancieraEntity(3, "Sandra", "Sanchez", "Sandra@unicauca.edu.co", new Date());
+		this.listaDeudasFinanciera.add(objCliente3);
+		FinancieraEntity objFinanciera = new FinancieraEntity(4, "Andres", "Perez", "andres@unicauca.edu.co", new Date());
+		this.listaDeudasFinanciera.add(objCliente);
 	}
 
 }

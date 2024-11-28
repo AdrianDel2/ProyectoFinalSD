@@ -3,20 +3,20 @@ package co.edu.unicauca.distribuidos.core.fachadaServices.services;
 
 import java.util.List;
 
-import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ClienteDTO;
+import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.FinancieraRespuestaDTO;
 
 /*Se trabaja con un cliente DTO porque no se debe exponer los entitys al exterior
  * Aqui en los DTO se define que informacion enviar
  */
 public interface IFinancieraService {
 
-	public List<ClienteDTO> findAll();
+	public List<FinancieraRespuestaDTO> findAll();
 
-	public ClienteDTO findById(Integer id);
+	public FinancieraRespuestaDTO findById(Integer id);
 
-	public ClienteDTO save(ClienteDTO cliente);
+	public FinancieraRespuestaDTO save(FinancieraRespuestaDTO cliente);
 
-	public ClienteDTO update(Integer id, ClienteDTO cliente);
+	public FinancieraRespuestaDTO update(Integer id, FinancieraRespuestaDTO cliente);
 
 	public boolean delete(Integer id);
 }

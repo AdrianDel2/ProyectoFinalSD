@@ -8,8 +8,11 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class FinancieraPeticionDTO{
-    	
-	private int valorDeuda;
+
+	private integer idEstudiante;
+    private String nombreUsuario;
+	private String apellidoEstudiante;
+    private integer valorDeuda;
 	private String tipoDeuda;	
 	private Date fechaVencimientoDeuda;
 }

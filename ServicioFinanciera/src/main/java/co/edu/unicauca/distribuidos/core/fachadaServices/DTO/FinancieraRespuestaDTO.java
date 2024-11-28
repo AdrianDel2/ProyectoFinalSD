@@ -1,17 +1,24 @@
-package main.java.co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
-public class ServicioFinancieraPeticionDTO {  
-    
-    private integer id;
+public class FinancieraRespuestaDTO {
+	
+	private integer idEstudiante;
     private String nombreUsuario;
+	private String apellidoEstudiante;
     private integer valorDeuda;
 	private String tipoDeuda;	
 	private Date fechaVencimientoDeuda;
+
+	public FinancieraRespuestaDTO() {
+
+	}
 }

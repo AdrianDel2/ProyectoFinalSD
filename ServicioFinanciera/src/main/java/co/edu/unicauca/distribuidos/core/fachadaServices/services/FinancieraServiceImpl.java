@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.FinancieraEntity;
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.repositories.FinancieraRepository;
-import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ClienteDTO;
+import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.FinancieraRespuestaDTO;
 
 /*@AllArgsConstructor para no tener que poner el constructor y ya se haria la inyeccion: MEJOR FORMA */
 @Service /*Indica que se creara un objeto automaticamente de esta clase para meterlo en el contenedor */
@@ -28,36 +28,36 @@ public class FinancieraServiceImpl implements IFinancieraService {
 	}
 
 	@Override
-	public List<ClienteDTO> findAll() {
+	public List<FinancieraRespuestaDTO> findAll() {
 		/*Obtiene una lista de clienteentity */
 		List<FinancieraEntity> clientesEntity = this.servicioAccesoBaseDatos.findAll();
 		/*Mapea la lista de clientes entity a clientes DTO */
-		List<ClienteDTO> clientesDTO = this.modelMapper.map(clientesEntity, new TypeToken<List<ClienteDTO>>() {
+		List<FinancieraRespuestaDTO> clientesDTO = this.modelMapper.map(clientesEntity, new TypeToken<List<FinancieraRespuestaDTO>>() {
 		}.getType());
 		return clientesDTO; /*Retornamos una lista DTO, no de entity como tal por seguridad supongo */
 	}
 
 	@Override
-	public ClienteDTO findById(Integer id) {
+	public FinancieraRespuestaDTO findById(Integer id) {
 		FinancieraEntity objCLienteEntity = this.servicioAccesoBaseDatos.findById(id);
-		ClienteDTO clienteDTO = this.modelMapper.map(objCLienteEntity, ClienteDTO.class);
+		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(objCLienteEntity, FinancieraRespuestaDTO.class);
 		return clienteDTO;
 	}
 
 	@Override
-	public ClienteDTO save(ClienteDTO cliente) {
+	public FinancieraRespuestaDTO save(FinancieraRespuestaDTO cliente) {
 		FinancieraEntity clienteEntity = this.modelMapper.map(cliente, FinancieraEntity.class); /*Conversion de cliente DTO a cliente entity */
 		clienteEntity.setCreateAt(new Date()); /*Fija una fecha de creacion */
 		FinancieraEntity objCLienteEntity = this.servicioAccesoBaseDatos.save(clienteEntity) /*Almacena cliente entity */;
-		ClienteDTO clienteDTO = this.modelMapper.map(objCLienteEntity, ClienteDTO.class) /*Mapeo a cliente DTO */;
+		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(objCLienteEntity, FinancieraRespuestaDTO.class) /*Mapeo a cliente DTO */;
 		return clienteDTO; /*Retorno cliente DTO */
 	}
 
 	@Override
-	public ClienteDTO update(Integer id, ClienteDTO cliente) {
+	public FinancieraRespuestaDTO update(Integer id, FinancieraRespuestaDTO cliente) {
 		FinancieraEntity clienteEntity = this.modelMapper.map(cliente, FinancieraEntity.class);
 		FinancieraEntity clienteEntityActualizado = this.servicioAccesoBaseDatos.update(id, clienteEntity);
-		ClienteDTO clienteDTO = this.modelMapper.map(clienteEntityActualizado, ClienteDTO.class);
+		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(clienteEntityActualizado, FinancieraRespuestaDTO.class);
 		return clienteDTO;
 	}
 

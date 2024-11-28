@@ -10,11 +10,13 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class FinancieraEntity {
-	private Integer id;
-	private String nombre;
-	private String apellido;
-	private String email;
-	private Date createAt;
+
+	private integer idEstudiante;
+    private String nombreUsuario;
+	private String apellidoEstudiante;
+    private integer valorDeuda;
+	private String tipoDeuda;	
+	private Date fechaVencimientoDeuda;
 
 	public FinancieraEntity() {
 

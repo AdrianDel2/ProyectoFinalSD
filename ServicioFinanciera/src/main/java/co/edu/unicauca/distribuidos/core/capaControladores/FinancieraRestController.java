@@ -18,45 +18,37 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.ClienteDTO;
-import co.edu.unicauca.distribuidos.core.fachadaServices.services.IClienteService;
+import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.FinancieraRespuestaDTO;
+import co.edu.unicauca.distribuidos.core.fachadaServices.services.IFinancieraService;
 
 @RestController /*Crear na serie de metodos que ofrece servicios rest */
 @RequestMapping("/api") /*Toda URL para ofrecer esos servicios web, debe empezar con /api */
 @CrossOrigin(origins = "http://localhost:4200",  
-methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}) 
-public class DeporteRestController
+methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.DELETE}) 
+public class FinancieraRestController{
 
 	@Autowired
-	private IClienteService clienteService; /*Inyeccion de un objeto que corresponde a la fachada 
+	private IFinancieraService financieraService; /*Inyeccion de un objeto que corresponde a la fachada 
 											Esta debe tener la mayor responsabilidad para dejar mas limpio el contorlador*/
 
 	@GetMapping("/clientes") 
-	public List<ClienteDTO> listarClientes() {
-		return clienteService.findAll();
+	public List<FinancieraRespuestaDTO> listarDeudasFinanciera() {
+		return financieraService.findAll();
 	}
 
 	@GetMapping("/clientes/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
-	public ClienteDTO consultarCliente(@PathVariable Integer id) {
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.findById(id);
-		return objCliente;
+	public FinancieraRespuestaDTO consultarCliente(@PathVariable Integer id) {
+		FinancieraRespuestaDTO objFinanciera = null;
+		objFinanciera = financieraService.findById(id);
+		return objFinanciera;
 	}
 
 	
 	@GetMapping("/clientes2")
-	public ClienteDTO consultarCliente2(@RequestParam Integer id) {
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.findById(id);
-		return objCliente;
-	}
-
-	@GetMapping("clientes2/{name}/{age}")
-	public String getMessage(@PathVariable String name,
-			@PathVariable("age") String edad) {
-		String msg = String.format("%s es %s años viejo", name, edad);
-		System.out.println(msg);
-		return msg;
+	public FinancieraRespuestaDTO consultarCliente2(@RequestParam Integer id) {
+		FinancieraRespuestaDTO objFinanciera = null;
+		objFinanciera = financieraService.findById(id);
+		return objFinanciera;
 	}
 
 	@GetMapping("consultarClientes")
@@ -67,29 +59,12 @@ public class DeporteRestController
 		return msg;
 	}
 
-	@PostMapping("/clientes")
-	public ClienteDTO crearCliente(@RequestBody ClienteDTO cliente) {/*Se hace la desconversion de JSON con esa anotacion */
-		ClienteDTO objCliente = null;
-		objCliente = clienteService.save(cliente);
-		return objCliente;
-	}
-
-	@PutMapping("/clientes/{id}")
-	public ClienteDTO actualizarCliente(@RequestBody ClienteDTO cliente, @PathVariable Integer id) {
-		ClienteDTO objCliente = null;
-		ClienteDTO clienteActual = clienteService.findById(id);
-		if (clienteActual != null) {
-			objCliente = clienteService.update(id, cliente);
-		}
-		return objCliente;
-	}
-
 	@DeleteMapping("/clientes/{id}")
 	public Boolean eliminarCliente(@PathVariable Integer id) {
 		Boolean bandera = false;
-		ClienteDTO clienteActual = clienteService.findById(id);
-		if (clienteActual != null) {
-			bandera = clienteService.delete(id);
+		FinancieraRespuestaDTO financieraActual = financieraService.findById(id);
+		if (financieraActual != null) {
+			bandera = financieraService.delete(id);
 		}
 		return bandera;
 	}
