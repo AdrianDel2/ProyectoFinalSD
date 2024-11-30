@@ -58,6 +58,9 @@ public class BibliotecaRepository {
 
 		BibliotecaEntity objBlioteca = new BibliotecaEntity(1, "Andres", "Perez", "La Maria", "Jorge Issac",new Date(), new Date());
 		this.listaDeudasBiblioteca.add(objBlioteca);
+		BibliotecaEntity objBlioteca4 = new BibliotecaEntity(1, "Andres", "Perez", "mmmm", "Jorge Issac",new Date(), new Date());
+		this.listaDeudasBiblioteca.add(objBlioteca4);
+
 		BibliotecaEntity objBlioteca1 = new BibliotecaEntity(2, "Juan", "Perez", "Matematicas Basicas","nombreAutor", new Date(), new Date());
 		this.listaDeudasBiblioteca.add(objBlioteca1);
 		BibliotecaEntity objBlioteca2 = new BibliotecaEntity(3, "Catalina", "Lopez", "Introducción a la ingenieria","nombreAutor", new Date(), new Date());

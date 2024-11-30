@@ -3,9 +3,11 @@ package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 public class FinancieraPeticionDTO{
 
