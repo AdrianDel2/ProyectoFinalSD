@@ -13,6 +13,8 @@ public interface IFinancieraService {
 	public List<FinancieraRespuestaDTO> findAll();
 
 	public FinancieraRespuestaDTO findById(Integer id);
+	public List<FinancieraRespuestaDTO> findAllById(Integer id);
 
 	public boolean delete(Integer id);
+	public boolean deleteAllById(Integer id);
 }

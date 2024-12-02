@@ -52,6 +52,38 @@ public class FinancieraRepository {
 		return bandera;
 	}
 
+	public boolean deleteAllById(Integer id) {
+		System.out.println("Invocando a eliminar las deudas de un estudiante del area financiera");
+		boolean bandera = false;
+
+		for (int i = 0; i < this.listaDeudasFinanciera.size(); i++) {
+			if (this.listaDeudasFinanciera.get(i).getIdEstudiante() == id) {
+				this.listaDeudasFinanciera.remove(i);
+				i--;  // Para mantener el índice correcto después de eliminar
+				bandera = true;
+			}
+		}
+
+		if(bandera==false) {
+			System.out.println("No existen deudas para el estudiante con Id: " + id);
+		}
+
+		return bandera;
+	}
+	
+	public List<FinancieraEntity> findAllById(Integer id) {
+		System.out.println("Invocando a consultar los estudiantes con el mismo id");
+		List<FinancieraEntity> deudasfinanciera = new ArrayList<>();
+	
+		for (FinancieraEntity financiera : listaDeudasFinanciera) {
+			if (financiera.getIdEstudiante() == id) {
+				deudasfinanciera.add(financiera);
+			}
+		}
+		return deudasfinanciera;
+	}
+
+
 	private void cargarDeudasFinanciera() {
 		FinancieraEntity objFinanciera1 = new FinancieraEntity(1, "Juan", "Perez", 50000,"Matricula", new Date());
 		this.listaDeudasFinanciera.add(objFinanciera1);

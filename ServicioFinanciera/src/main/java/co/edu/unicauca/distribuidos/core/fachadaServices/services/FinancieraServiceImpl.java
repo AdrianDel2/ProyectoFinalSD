@@ -1,4 +1,3 @@
-
 package co.edu.unicauca.distribuidos.core.fachadaServices.services;
 
 import java.util.Date;
@@ -8,6 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.FinancieraEntity;
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.repositories.FinancieraRepository;
@@ -47,5 +48,20 @@ public class FinancieraServiceImpl implements IFinancieraService {
 	@Override
 	public boolean delete(Integer id) {
 		return this.servicioAccesoBaseDatos.delete(id);
+	}
+
+	public List<FinancieraRespuestaDTO> findAllById(Integer id){
+
+		List<FinancieraEntity> financieraEntity = this.servicioAccesoBaseDatos.findAllById(id);
+		if (financieraEntity.isEmpty()){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante con id: " + id + " NO tiene deudas registradas");
+		}
+		List<FinancieraRespuestaDTO> financieraRespuestaDTO = this.modelMapper.map(financieraEntity, new TypeToken<List<FinancieraRespuestaDTO>>() {
+		}.getType());
+		return financieraRespuestaDTO;
+	}
+
+	public boolean deleteAllById(Integer id){
+		return this.servicioAccesoBaseDatos.deleteAllById(id);
 	}
 }
