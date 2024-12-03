@@ -1,15 +1,10 @@
-package main.java.co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
 
 import java.util.Date;
+import lombok.Data;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-public class ServicioDeporteRespuestaDTO {
+@Data
+public class RespuestaDeporteDTO {
     private int idEstudiante;
     private String nombreEstudiante;
     private String apellidoEstuduante;

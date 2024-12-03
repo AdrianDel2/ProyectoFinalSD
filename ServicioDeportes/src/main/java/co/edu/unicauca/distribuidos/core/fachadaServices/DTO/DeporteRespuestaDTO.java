@@ -1,4 +1,5 @@
 package co.edu.unicauca.distribuidos.core.fachadaServices.DTO;
+
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -8,15 +9,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class BibliotecaPeticionDTO {
-    
-    private String nombreLibro;
-    private String nombreAutor;
+public class DeporteRespuestaDTO {
+    private int idEstudiante;
+    private String nombreEstudiante;
+    private String apellidoEstuduante;
+    private String nombreImplemento;
     private Date fechaPrestamo;
     private Date fechaEntrega;
+    private String nombreDeporte;  
 
-    public BibliotecaPeticionDTO() {
+    public DeporteRespuestaDTO() {
 
-    }
-    
+	}
 }
