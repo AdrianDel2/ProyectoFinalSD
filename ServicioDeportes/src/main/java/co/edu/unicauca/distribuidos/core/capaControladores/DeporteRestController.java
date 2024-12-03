@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.DeporteRespuestaDTO;
 import co.edu.unicauca.distribuidos.core.fachadaServices.services.IDeporteService;
-
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.http.HttpStatus;
 @RestController /*Crear na serie de metodos que ofrece servicios rest */
 @RequestMapping("/api") /*Toda URL para ofrecer esos servicios web, debe empezar con /api */
 @CrossOrigin(origins = "http://localhost:4200",  
@@ -31,28 +32,25 @@ public class DeporteRestController {
 	private IDeporteService deporteService; /*Inyeccion de un objeto que corresponde a la fachada 
 											Esta debe tener la mayor responsabilidad para dejar mas limpio el contorlador*/
 
-	@GetMapping("/clientes") 
-	public List<DeporteRespuestaDTO> listarClientes() {
+	@GetMapping("/deportes") 
+	public List<DeporteRespuestaDTO> listarDeudasDeporte() {
 		return deporteService.findAll();
 	}
 
-	@GetMapping("/clientes/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
-	public DeporteRespuestaDTO consultarCliente(@PathVariable Integer id) {
-		DeporteRespuestaDTO objDeporte = null;
-		objDeporte = deporteService.findById(id);
-		return objDeporte;
+	@GetMapping("/deportes/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
+	public DeporteRespuestaDTO consultarDeudasDeporte(@PathVariable Integer id) {
+		try{
+
+			DeporteRespuestaDTO objDeporte = deporteService.findById(id);
+			return objDeporte;
+			
+		}catch(ResponseStatusException e){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"El estudiante con id: " + id + " No tiene deudas de implementos registradas");
+		}
 	}
 
-	@GetMapping("consultarClientes")
-	public String consultarClientesConVariosParametros(@RequestParam String nombres,
-			@RequestParam String apellidos) {
-		String msg = String.format("buscando un cliente por nombre: %s, apellidos: %s", nombres, apellidos);
-		System.out.println(msg);
-		return msg;
-	}
-
-	@DeleteMapping("/clientes/{id}")
-	public Boolean eliminarCliente(@PathVariable Integer id) {
+	@DeleteMapping("/deportes/{id}")
+	public Boolean eliminarDeudasDeporte(@PathVariable Integer id) {
 		Boolean bandera = false;
 		DeporteRespuestaDTO DeporteActual = deporteService.findById(id);
 		if (DeporteActual != null) {
@@ -61,12 +59,33 @@ public class DeporteRestController {
 		return bandera;
 	}
 
-	@GetMapping("/clientes/listarCabeceras")
+	/*Metodo para buscar varios registros por medio de un id especifico */
+	@GetMapping("/deportes/especifico/{id}")
+	public List<DeporteRespuestaDTO> buscarDeudasIdEspecifico(@PathVariable Integer id){
+		try{
+
+			List<DeporteRespuestaDTO> listaDeudasDeporte = deporteService.findAllById(id);
+			return listaDeudasDeporte;
+		}catch(ResponseStatusException e){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND,"El estudiante con id: " + id + " No tiene deudas de implementos registradas");
+		}
+	}
+	/*Metodo para eliminar varios registros que pertenecen a un estudiante por un id especifico*/
+	@DeleteMapping("/deportes/especifico/{id}")
+	public Boolean eliminarTodasDeudasDeporte(@PathVariable Integer id){
+		Boolean bandera = false;
+		DeporteRespuestaDTO DeporteActual = deporteService.findById(id);
+		if (DeporteActual != null) {
+			bandera = deporteService.deleteAllById(id);
+		}
+		return bandera;
+	}
+
+	@GetMapping("/deportes/listarCabeceras")
 	public void listarCabeceras(@RequestHeader Map<String, String> headers) {
 		System.out.println("cabeceras");
 		headers.forEach((key, value) -> {
 			System.out.println(String.format("Cabecera '%s' = %s", key, value));
 		});
 	}
-
 }

@@ -14,10 +14,9 @@ import co.edu.unicauca.distribuidos.core.capaAccesoADatos.models.FinancieraEntit
 import co.edu.unicauca.distribuidos.core.capaAccesoADatos.repositories.FinancieraRepository;
 import co.edu.unicauca.distribuidos.core.fachadaServices.DTO.FinancieraRespuestaDTO;
 
-/*@AllArgsConstructor para no tener que poner el constructor y ya se haria la inyeccion: MEJOR FORMA */
 @Service /*Indica que se creara un objeto automaticamente de esta clase para meterlo en el contenedor */
 public class FinancieraServiceImpl implements IFinancieraService {
-	/*@Autowired Inyeccion de dependencias por atributo -> Busca en el contenedor un objeto que correpsonda a UsuarioRepository y lo inyecta aqui */
+	
 	private FinancieraRepository servicioAccesoBaseDatos; /*Se utiliza el repositorio inyectado para hacer las sentencias SQL */
 
 	private ModelMapper modelMapper; /*Se utiliza el mapeador inyectado para hacer las sentencias SQL */
@@ -32,24 +31,28 @@ public class FinancieraServiceImpl implements IFinancieraService {
 	public List<FinancieraRespuestaDTO> findAll() {
 		/*Obtiene una lista de clienteentity */
 		List<FinancieraEntity> clientesEntity = this.servicioAccesoBaseDatos.findAll();
-		/*Mapea la lista de clientes entity a clientes DTO */
-		List<FinancieraRespuestaDTO> clientesDTO = this.modelMapper.map(clientesEntity, new TypeToken<List<FinancieraRespuestaDTO>>() {
+		/*Mapea la lista de financiera entity a financiera DTO */
+		List<FinancieraRespuestaDTO> FinancieraDTO = this.modelMapper.map(clientesEntity, new TypeToken<List<FinancieraRespuestaDTO>>() {
 		}.getType());
-		return clientesDTO; /*Retornamos una lista DTO, no de entity como tal por seguridad supongo */
+		return FinancieraDTO; /*Retornamos una lista DTO, no de entity como tal*/
 	}
 
 	@Override
 	public FinancieraRespuestaDTO findById(Integer id) {
-		FinancieraEntity objCLienteEntity = this.servicioAccesoBaseDatos.findById(id);
-		FinancieraRespuestaDTO clienteDTO = this.modelMapper.map(objCLienteEntity, FinancieraRespuestaDTO.class);
-		return clienteDTO;
+		FinancieraEntity objFinancieraEntity = this.servicioAccesoBaseDatos.findById(id);
+		if (objFinancieraEntity == null){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante con id: " + id + " no fue encontrado en las deudas del area de financiera");
+		}
+		FinancieraRespuestaDTO financieraDTO = this.modelMapper.map(objFinancieraEntity, FinancieraRespuestaDTO.class);
+		return financieraDTO;
 	}
 
 	@Override
 	public boolean delete(Integer id) {
 		return this.servicioAccesoBaseDatos.delete(id);
 	}
-
+	
+	@Override
 	public List<FinancieraRespuestaDTO> findAllById(Integer id){
 
 		List<FinancieraEntity> financieraEntity = this.servicioAccesoBaseDatos.findAllById(id);
@@ -61,6 +64,7 @@ public class FinancieraServiceImpl implements IFinancieraService {
 		return financieraRespuestaDTO;
 	}
 
+	@Override
 	public boolean deleteAllById(Integer id){
 		return this.servicioAccesoBaseDatos.deleteAllById(id);
 	}

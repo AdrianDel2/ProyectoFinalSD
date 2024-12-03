@@ -39,11 +39,17 @@ public class FinancieraRestController{
 		return financieraService.findAll();
 	}
 
-	@GetMapping("/financiera/{id}")/*Tambien se puede enviar este parametro con la anotacion @RequestParam */
+	@GetMapping("/financiera/{id}")
 	public FinancieraRespuestaDTO consultarCliente(@PathVariable Integer id) {
-		FinancieraRespuestaDTO objFinanciera = null;
-		objFinanciera = financieraService.findById(id);
+		try{
+		//FinancieraRespuestaDTO objFinanciera = null;
+		FinancieraRespuestaDTO objFinanciera = financieraService.findById(id);
 		return objFinanciera;
+
+		}catch(ResponseStatusException e){
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Estudiante con id: " + id + " no fue encontrado en las deudas del area financiera");
+		}
+		
 	}
 
 	@DeleteMapping("/financiera/{id}")
@@ -55,6 +61,7 @@ public class FinancieraRestController{
 		}
 		return bandera;
 	}
+	
 
 	/*Metodo para buscar varios registros por medio de un id especifico */
 	@GetMapping("/financiera/especifico/{id}")
@@ -75,19 +82,10 @@ public class FinancieraRestController{
 		Boolean bandera = false;
 		FinancieraRespuestaDTO deudaActual = financieraService.findById(id);
 		if (deudaActual != null) {
-			bandera = financieraService.delete(id);
-
-			if (!bandera) {
-				// Si no se eliminaron deudas, muestra un mensaje
-				System.out.println("No existen deudas pendientes para el estudiante con id: " + id);
-			}
-		} else {
-			System.out.println("Estudiante con id: " + id + " no fue encontrado en las deudas ");
-		}
+			bandera = financieraService.deleteAllById(id);
+		} 
 		return bandera;
-
 	}
-
 
 	@GetMapping("/financiera/listarCabeceras")
 	public void listarCabeceras(@RequestHeader Map<String, String> headers) {

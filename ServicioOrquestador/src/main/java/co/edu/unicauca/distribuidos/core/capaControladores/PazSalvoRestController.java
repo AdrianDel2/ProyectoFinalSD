@@ -1,4 +1,3 @@
-
 package co.edu.unicauca.distribuidos.core.capaControladores;
 
 import java.util.List;
@@ -30,13 +29,13 @@ public class PazSalvoRestController {
 											Esta debe tener la mayor responsabilidad para dejar mas limpio el contorlador*/
 
 	//@PathVariable indica que el valor del parámetro se extraerá de la parte correspondiente de la URL										
-	@GetMapping("/orquestadorSincrono/{id}")						
+	@GetMapping("/orquestadorSincrono/{idEstudiante}")						
 	public RespuestaPazSalvoDTO orquestarServicioSincronicamente (@PathVariable int idEstudiante ){
 		RespuestaPazSalvoDTO objResultado = this.objFachada.generarPazSalvoSincrono(idEstudiante);
 		return objResultado;
 	}
 
-	@GetMapping("/orquestadorAsincrono/{id}")
+	@GetMapping("/orquestadorAsincrono/{idEstudiante}")
 	public Mono<RespuestaPazSalvoDTO> orquestarServicioAsincronicamente(@PathVariable int idEstudiante){
 		Mono<RespuestaPazSalvoDTO> objResultado = this.objFachada.generarPazSalvoAsincrono(idEstudiante);
 		return objResultado;
